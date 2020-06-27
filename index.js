@@ -9,13 +9,23 @@ exports.oauthToken = async (req, res) => {
     res.set('Access-Control-Max-Age', '3600');
     res.status(204).send('');
   } else {
+    const clientId = process.env.CLIENT_ID ? process.env.CLIENT_ID : req.body.client_id;
+    const clientSecret = process.env.CLIENT_SECRET ? process.env.CLIENT_SECRET : req.body.client_secret;
+    const redirectURI = req.body.redirect_uri;
+    const code = req.body.code;
+    const state = req.body.state;
+
+    if (!clientId || !clientSecret || !redirectURI || !code || !state) {
+      return res.status(409).send('error');
+    }
+    
     try {
       await axios.post('https://github.com/login/oauth/access_token', {
-        redirect_uri: req.body.redirect_uri,
-        client_id: req.body.client_id,
-        client_secret: req.body.client_secret,
-        code: req.body.code,
-        state: req.body.state
+        redirect_uri: redirectURI,
+        client_id: clientId,
+        client_secret: clientSecret,
+        code: code,
+        state: state
       }, {
         headers: {
           'Accept': 'application/json',
@@ -23,7 +33,7 @@ exports.oauthToken = async (req, res) => {
         }
       })
         .then(function (response) {
-          res.status(200).send(response.data);
+          return res.status(200).send(response.data);
         });
     } catch (error) {
       console.log(error.toString());

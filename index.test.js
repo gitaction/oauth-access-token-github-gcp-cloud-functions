@@ -38,6 +38,16 @@ test('should allow all the origin for CORS Preflight', () => {
   expect(res.send).toHaveBeenCalledWith('');
 });
 
+test('should receive input error when parameters missing', () => {
+  const req = { method: 'POST', body: {}};
+  const res = mockResponse();
+
+  oauthToken(req, res);
+
+  expect(res.status).toHaveBeenCalledWith(409);
+  expect(res.send).toHaveBeenCalledWith('error');
+});
+
 test('should receive token with 200', async () => {
   const res = mockResponse();
   const token = {

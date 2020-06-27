@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "functions-framework --target=oauthToken"
+    "source": "source .env",
+    "lanuch": "CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} functions-framework --target=oauthToken",
+    "start": "yarn source && yarn lanuch"
   },
   "keywords": [
     "OAuth",
