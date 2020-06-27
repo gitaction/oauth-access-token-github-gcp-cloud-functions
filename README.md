@@ -1,4 +1,4 @@
-# Cloud Run - GitHub Actions
+# GitHub OAuth App access token serverless solution 
 
 An example workflow that uses [GitHub Actions][actions] to deploy a
 [Hello World Node.js app](http-get/index.js) to [Cloud Run][cloud-run].
