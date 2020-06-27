@@ -1,5 +1,7 @@
 # GitHub OAuth App access token serverless solution 
 
+![Build and Deploy to Cloud Functions](https://github.com/gitaction/oauth-access-token-github-gcp-cloud-functions/workflows/Build%20and%20Deploy%20to%20Cloud%20Functions/badge.svg)
+
 An example workflow that uses [GitHub Actions][actions] to deploy a
 [Hello World Node.js app](http-get/index.js) to [Cloud Run][cloud-run].
 
